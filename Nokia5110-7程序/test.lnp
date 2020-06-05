@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"main.obj",
+"nokia_5110.obj" 
+TO "test" 

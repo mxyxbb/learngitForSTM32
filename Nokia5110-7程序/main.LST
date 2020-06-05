@@ -1,0 +1,63 @@
+C51 COMPILER V7.50   MAIN                                                                  11/23/2013 10:21:25 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: d:\Keil\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*
+   2                  艾米电子工作室
+   3                  
+   4          实验十六 NOkia5110液晶
+   5          db ：zliang 
+   6          11/29/2007 8:03PM
+   7          网站：http://www.amy-studio.com/
+   8          */
+   9          
+  10          #include "nokia_5110.h"
+  11          #include "bmp_pixel.h"
+  12          
+  13          //***********************************
+  14          #define         delay_time      25767
+  15          
+  16          
+  17          /********************************************************************/
+  18          
+  19          
+  20          /******************************************************************************/
+  21          void main(void) 
+  22          {
+  23   1              LCD_init(); //初始化液晶    
+  24   1              LCD_clear();
+  25   1              
+  26   1              while(1)  
+  27   1              {
+  28   2                      LCD_write_english_string(0,0," Welcome to  ");
+  29   2                      LCD_write_english_string(0,1," Amy  studio ");
+  30   2                      LCD_write_english_string(0,2,"amy-studio.com");
+  31   2                      LCD_write_english_string(0,3," Nokia5110 LCD");
+  32   2                      LCD_write_chinese_string(12,4,12,4,0,5);  
+  33   2      
+  34   2              }         
+  35   1      
+  36   1      
+  37   1      }
+  38          
+  39          
+  40          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     77    ----
+   CONSTANT SIZE    =    408    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
