@@ -12,6 +12,6 @@ void Lcd_Init(void);										//LCD初始化
 void LCD_Display_Words(uint8_t x,uint8_t y,uint8_t*str);	//LCD显示文字
 void LCD_Clear(void);										//LCD清屏
 void LCD_Display_Picture(uint8_t *img);						//LCD显示图片
-void LCD_Display_8Number(uint8_t numb);						//LCD显示数字
-void LCD_Display_32Number(uint32_t numb);
+void LCD_Display_8Number(uint8_t numb);						//LCD显示8bit数字(0-255)
+void LCD_Display_32Number(uint32_t numb);					//LCD显示32bit数字(0-4294967295)
 #endif

@@ -160,21 +160,10 @@ void LCD_Display_8Number(uint8_t numb)
 	ch[1] = (numb/10)%10  + 0x30;	// 取十位
 	ch[2] = numb%10  + 0x30;	// 取个位
 	
-	//去零显示
-	if(ch[0] != '0') 
-	{
-		Lcd_WriteData(ch[0]);
-		Lcd_WriteData(ch[1]);
-		Lcd_WriteData(ch[2]);
-	}
-	else if(ch[1] != '0') 
-	{
-		Lcd_WriteData(ch[1]);
-		Lcd_WriteData(ch[2]);
-	}
-	else  
-		Lcd_WriteData(ch[2]);
-	
+
+	Lcd_WriteData(ch[0]);
+	Lcd_WriteData(ch[1]);
+	Lcd_WriteData(ch[2]);
 }
 
 
@@ -186,20 +175,89 @@ void LCD_Display_8Number(uint8_t numb)
  */
 void LCD_Display_32Number(uint32_t numb)
 {
-	uint8_t * p8;	// 用于分割uint32_t类型的变量numb
-	uint8_t num[4];	// 用于存储4个uint8_t类型变量
-	uint8_t i = 0;	// for循环中使用
+
+	uint8_t ch[10];
+	uint8_t i=0;
+	uint8_t j=0;
 	
-	p8 = (uint8_t *)&numb;	// 对numb取地址(uint32_t类型)，并强制转换为uint8_t的地址类型
-							// 这样操作后，p8+1就会使得地址前进一个uint8_t类型数据的空间
-	num[0] = *(p8+0);
-	num[1] = *(p8+1);
-	num[2] = *(p8+2);
-	num[3] = *(p8+3);
 	
-	LCD_Display_8Number(num[3]);
-	LCD_Display_8Number(num[2]);
-	LCD_Display_8Number(num[1]);
-	LCD_Display_8Number(num[0]);
+	ch[0] = (numb/1000000000)%10 + 0x30; 	// 取十亿位
+	ch[1] = (numb/100000000)%10 + 0x30; 	// 取亿位
+	ch[2] = (numb/10000000)%10 + 0x30; 	// 取千万位
+	ch[3] = (numb/1000000)%10 + 0x30; 	// 取百万位
+	ch[4] = (numb/100000)%10 + 0x30; 	// 取十万位
+	ch[5] = (numb/10000)%10 + 0x30; 	// 取万位
+	ch[6] = (numb/1000)%10 + 0x30; 	// 取千位
+	ch[7] = (numb/100)%10 + 0x30; 	// 取百位
+	ch[8] = (numb/10)%10  + 0x30;	// 取十位
+	ch[9] = numb%10  + 0x30;	// 取个位
 	
+	//去零显示
+//	j = 0;
+//	if(ch[j++] != '0')		//如果十亿位不是零
+//	{
+		for(i=0;i<=9;i++)
+		Lcd_WriteData(ch[i]);	//显示包括十亿位的所有数字
+//	}
+//	else if (ch[j++] != '0')//如果亿位不是零
+//	{
+//		for(i=j-1;i<=9;i++)
+//		Lcd_WriteData(ch[i]);//显示包括亿位的所有数字
+//	}
+//	else if (ch[j++] != '0')//千万位去零
+//	{
+//		for(i=j-1;i<=9;i++)
+//			Lcd_WriteData(ch[i]);
+//	}
+//	else if (ch[j++] != '0')//百万位去零
+//	{
+//		for(i=j-1;i<=9;i++)
+//			Lcd_WriteData(ch[i]);
+//	}
+//	else if (ch[j++] != '0')//十万位去零
+//	{
+//		for(i=j-1;i<=9;i++)
+//			Lcd_WriteData(ch[i]);
+//	}
+//	else if (ch[j++] != '0')//万位去零
+//	{
+//		for(i=j-1;i<=9;i++)
+//			Lcd_WriteData(ch[i]);
+//	}
+//	else if (ch[j++] != '0')//千位去零
+//	{
+//		for(i=j-1;i<=9;i++)
+//			Lcd_WriteData(ch[i]);
+//	}
+//	else if (ch[j++] != '0')//百位去零
+//	{
+//		for(i=j-1;i<=9;i++)
+//			Lcd_WriteData(ch[i]);
+//	}
+//	else if (ch[j++] != '0')//十位去零
+//	{
+//		for(i=j-1;i<=9;i++)
+//			Lcd_WriteData(ch[i]);
+//	}
+//	else if (ch[j++] != '0')//个位去零
+//	{
+//		for(i=j-1;i<=9;i++)
+//			Lcd_WriteData(ch[i]);
+//	}
+	
+	
+	/*等价于上式
+	if(ch[0] != '0') 
+	{
+		for(i=0;i<10;i++)
+			Lcd_WriteData(ch[i]);
+	}
+	else if(ch[1] != '0') 
+	{
+		for(i=1;i<10;i++)
+			Lcd_WriteData(ch[i]);
+	}
+	else  
+		...
+*/	
 }
